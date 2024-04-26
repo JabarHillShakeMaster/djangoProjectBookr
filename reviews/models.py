@@ -52,8 +52,8 @@ class Contributor(models.Model):
          "The contributor's last name or names.")
     email = models.EmailField \
         (help_text="The contact email for the contributor.")
-    phoneNumber = models.DateField \
-        (max_length=15, \
+    phoneNumber = models.CharField \
+        (max_length=17, \
          help_text="The contact phone number for the contributor.")
 
     def __str__(self):
