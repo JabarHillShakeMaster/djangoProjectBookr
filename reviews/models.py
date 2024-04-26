@@ -75,17 +75,17 @@ class BookContributor(models.Model):
          "The role this contributor had in the book.", \
          choices=ContributionRole.choices, max_length=20)
 
-    class Review(models.Model):
-        content = models.TextField \
-            (help_text="The Review text.")
-        rating = models.IntegerField \
-            (help_text="The rating the reviewer has given.")
-        date_created = models.DateTimeField \
-            (auto_now_add=True, \
-             help_text= \
-                 "The date and time the review was created.")
-        creator = models.ForeignKey \
-            (auth.get_user_model(), on_delete=models.CASCADE)
-        book = models.ForeignKey \
-            (Book(), on_delete=models.CASCADE, \
-             help_text="The Book that this review is about.")
+class Review(models.Model):
+    content = models.TextField \
+        (help_text="The Review text.")
+    rating = models.IntegerField \
+        (help_text="The rating the reviewer has given.")
+    date_created = models.DateTimeField \
+        (auto_now_add=True, \
+            help_text= \
+                "The date and time the review was created.")
+    creator = models.ForeignKey \
+        (auth.get_user_model(), on_delete=models.CASCADE)
+    book = models.ForeignKey \
+        (Book(), on_delete=models.CASCADE, \
+            help_text="The Book that this review is about.")
