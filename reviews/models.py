@@ -1,5 +1,6 @@
 from django.db import models
 from django.contrib import auth
+from django.http import HttpResponse
 # Create your models here.
 
 class Publisher(models.Model):
@@ -31,8 +32,8 @@ class Book(models.Model):
          verbose_name="ISBN number of the book.")
     publisher = models.ForeignKey \
         (Publisher, on_delete=models.CASCADE)
-    contributors = models.ManyToManyField \
-        ('Contributor', through="BookContributor")
+    contributors = (models.ManyToManyField \
+        ('Contributor', through="BookContributor"))
 
     def __str__(self):
         return self.title
