@@ -1,3 +1,4 @@
+from django.shortcuts import render, get_object_or_404
 from django.shortcuts import render
 from django.http import HttpResponse
 from .models import Book, Review
@@ -45,3 +46,21 @@ def book_list(request):
         'book_list': book_list
     }
     return render(request, 'reviews/books_list.html', context)
+
+def book_detail(request, pk):
+    book = get_object_or_404(Book, pk=pk)
+    reviews = book.review_set.all()
+    if reviews:
+        book_rating = average_rating([review.rating for review in reviews])
+        context = {
+            'book': book,
+            'book_rating': book_rating,
+            'review': reviews
+        }
+    else:
+        context = {
+            'book': book,
+            'book_rating': None,
+            'review': None
+        }
+    return render(request, 'reviews/bookDetailView.html', context)
