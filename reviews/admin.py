@@ -1,6 +1,8 @@
 from django.contrib import admin
-
+from django.contrib.admin import AdminSite
 from reviews.models import Publisher, Contributor, Book, BookContributor, Review
+
+
 
 # Register your models here.
 admin.site.register(Publisher)
