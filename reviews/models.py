@@ -35,8 +35,10 @@ class Book(models.Model):
     contributors = (models.ManyToManyField \
         ('Contributor', through="BookContributor"))
 
+    def isbn13(selfself, obj):
+        return "{}-{}-{}-{}-{}".format(obj.isbn[0:3], obj.isbn[3:4], obj.isbn[4:6], obj.isbn[6:12], obj.isbn[12:13])
     def __str__(self):
-        return self.title
+        return "{} ({})".format(self.title,self.isbn)
 
 class Contributor(models.Model):
     """
@@ -56,6 +58,11 @@ class Contributor(models.Model):
     phoneNumber = models.CharField \
         (max_length=17, \
          help_text="The contact phone number for the contributor.")
+
+    def initialled_name(obj):
+        initials = ''.join([name[0] for name in obj.first_names.split(' ')])
+
+        return "{}, {}".format(obj.last_names, initials)
 
     def __str__(self):
         return self.first_name
