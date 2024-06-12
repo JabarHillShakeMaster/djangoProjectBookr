@@ -6,7 +6,7 @@ from .utils import average_rating
 from django.db import models
 
 def index(request):
-    name = "world"
+    # name = "world"
     # search = request.GET.get("search") or "</html>"
     # name = "world"
     # search = request.GET.get("search")
@@ -14,8 +14,8 @@ def index(request):
     # name = HttpResponse
     # return HttpResponse("Hello, {}!".format(name))
     # , HttpResponse("{}".format(search))
-    #return HttpResponse(name)
-    return render(request, "base.html", {"name": name})
+    # return HttpResponse(name)
+    return render(request, "base.html")
 
 def searchResult(request):
     search = request.GET.get("search") or "</html>"
@@ -32,6 +32,7 @@ def searchResult(request):
 
 def book_search():
     return render()
+
 def book_list(request):
     books = Book.objects.all()
     book_list = []
