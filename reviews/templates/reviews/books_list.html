@@ -1,10 +1,10 @@
-{% extends 'base.html' %}
+{% extends 'reviews/base.html' %}
 
 {% block content %}
 <ul class="list-group">
   {% for item in book_list %}
   <li class="list-group-item">
-      <span class="text-info">Title: </span> <a href=""></a><span>{{ item.book.title }}</span></a>
+      <span class="text-info">Title: </span> <span>{{ item.book.title }}</span>
       <br>
       <span class="text-info">Publisher: </span><span>{{ item.book.publisher }}</span>
       <br>
@@ -14,11 +14,11 @@
       <br>
       <span class="text-info">Number of reviews: </span><span>{{ item.number_of_reviews }}</span>
       <br>
-      {% if item.book_rating is null %}
+      {% if not item.book_rating %}
       <span class="text-secondary">Provide a rating and write the first review for this book.</span>
       <br>
       {% endif %}
-      <a class="btn btn-primary btn-sm active" role="button" aria-pressed="true" href="/book/{{ item.book.id }}/">Reviews</a></li>
+      <a class="btn btn-primary btn-sm active" role="button" href="{% url 'book_detail' item.book.pk %}">Reviews</a></li>
   </li>
   {% endfor %}
 </ul>
