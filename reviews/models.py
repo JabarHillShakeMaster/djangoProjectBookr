@@ -34,6 +34,9 @@ class Book(models.Model):
         (Publisher, on_delete=models.CASCADE)
     contributors = (models.ManyToManyField \
         ('Contributor', through="BookContributor"))
+    cover = models.ImageField(null=True, blank=True, upload_to="book_covers/")
+    sample = models.FileField(null=True, blank=True, upload_to="book_samples/")
+
 
     def isbn13(selfself, obj):
         return "{}-{}-{}-{}-{}".format(obj.isbn[0:3], obj.isbn[3:4], obj.isbn[4:6], obj.isbn[6:12], obj.isbn[12:13])

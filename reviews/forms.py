@@ -1,5 +1,5 @@
 from django import forms
-from .models import Publisher, Review
+from .models import Publisher, Review, Book
 
 class PublisherForm(forms.ModelForm):
     class Meta:
@@ -16,3 +16,8 @@ class ReviewForm(forms.ModelForm):
         exclude = ["date_edited", "books"] # Only these two should be excluded and every other field from Reviews should show
 
     rating = forms.IntegerField(min_value=0, max_value=5)
+
+class BookMediaForm(forms.ModelForm):
+    class Meta:
+        model = Book
+        fields = ["cover", "sample"]
