@@ -14,25 +14,25 @@ Including another URLconf
     1. Import the include() function: from django.urls import include, path
     2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
 """
-
-# from reviews.admin import
-from django.contrib import admin
-from django.urls import include, path
 from django.conf import settings
+from django.contrib import admin
 from django.conf.urls.static import static
+from django.urls import include, path
+
 from bookr.views import profile
-from bookr_admin.admin import admin_site
+#from bookr_admin.admin import admin_site
 import reviews.views
 
 urlpatterns = [
-    path('accounts/', include(('django.contrib.auth.urls', 'auth'), namespace='accounts')),\
-    path('accounts/profile/', profile, name='profile'),\
+    path('accounts/', include(('django.contrib.auth.urls', 'auth'),\
+                              namespace='accounts')),
+    path('accounts/profile/', profile, name='profile'),
+    path('', reviews.views.index),
+    path('book-search/', reviews.views.book_search, name='book_search'),
     path('admin/', admin.site.urls),\
-    # path('bookradmin/', admin.site.urls),\
-    # path('', reviews.views.index),\
-    # path('book-search/', reviews.views.book_search, name='book_search'),\
+    path('filter_demo/', include('filter_demo.urls')),\
     path('', include('reviews.urls')),
-    path('admin/', admin_site.urls),
+    path('book_management/', include('book_management.urls')),
 ]
 
 if settings.DEBUG:

@@ -33,14 +33,16 @@ ALLOWED_HOSTS = []
 
 INSTALLED_APPS = [
     # 'bookr.apps.BookrAdminConfig',
-    'django.contrib.admin',
+    # 'django.contrib.admin',
+    'bookr_admin.apps.BookrAdminConfig',
     'django.contrib.auth',
     'django.contrib.contenttypes',
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'reviews',
-    'bookr_admin',
+    'filter_demo',
+    'book_management',
 ]
 
 MIDDLEWARE = [
